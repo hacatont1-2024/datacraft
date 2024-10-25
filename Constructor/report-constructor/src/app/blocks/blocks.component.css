@@ -1,0 +1,26 @@
+.block {
+    margin: 1vh 5vh;
+    background-color: beige;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1vh;
+    border-radius: 10px;
+}
+
+.block-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1vh;
+}
+
+.boolean-block {
+    text-align: center; 
+    margin: 20px;
+}
+
+input {
+    border: 1px solid rgb(212, 211, 211);
+    border-radius: 10px;
+}

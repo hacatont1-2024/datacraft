@@ -1,0 +1,47 @@
+.loadFile {
+    position: absolute;
+    z-index: 999;
+    width: 70vh;
+    height: 50vh;
+    background-color: rgb(204, 204, 204);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+}
+
+.loadTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1vh;
+}
+
+.loadCsv {
+    padding: 2vh;
+}
+
+.formLoad {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loadBtn {
+    position: absolute;
+    z-index: 999;
+    width: 20vh;
+    height: 5vh;
+    background-color: rgb(204, 204, 204);
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+}
+
+.loadBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

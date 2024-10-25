@@ -1,0 +1,17 @@
+<div class="block">
+    <div *ngIf="type === 'string'">
+        <div class="block-title">ФИО</div>
+        <input type="text" name="" id="">
+    </div>
+    <div *ngIf="type === 'number'">
+        <div class="block-title">Номер телефона</div>
+        <input type="number" name="" id="">
+    </div>
+    <div *ngIf="type === 'boolean'" class="boolean-block">
+        <div class="block-title">Логический выбор</div>
+        <select>
+            <option value="yes">Да</option>
+            <option value="no">Нет</option>
+          </select>
+    </div>
+</div>

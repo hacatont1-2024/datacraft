@@ -1,0 +1,10 @@
+<div class="header">
+    <div class="tools">
+        <button class="constructorBtn" (click)="setMode(1)">Конструктор</button>
+        <button class="templatesBtn" (click)="setMode(2)">Шаблоны</button>
+    </div>
+</div>
+
+<app-contstructor *ngIf="mode === 1"></app-contstructor>
+<app-templates *ngIf="mode === 2"></app-templates>
+<app-load-file></app-load-file>

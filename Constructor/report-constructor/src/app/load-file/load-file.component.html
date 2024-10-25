@@ -1,0 +1,17 @@
+<div #loadFile class="loadFile displayNone">
+    <div class="loadTitle">
+        <span>Зазгурите файл</span>
+    </div>
+    <div>
+        <form class="formLoad" action="/upload" method="post" enctype="multipart/form-data">
+            <label class="loadCsv" for="fileInput">Загрузить CSV файл:</label>
+            <input type="file" id="fileInput" name="csvfile" accept=".csv">
+            <!-- временный клик на кнопке, будем закрывать окно при успешном отправлении на сервер-->
+            <input type="submit" value="Загрузить" (click)="showLoadWindow()">
+          </form>
+    </div>
+</div>
+
+<div class="loadFileBtn" (click)="showLoadWindow()">
+    <button class="loadBtn">Загрузить</button>
+</div>

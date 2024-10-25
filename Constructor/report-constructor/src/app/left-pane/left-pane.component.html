@@ -1,0 +1,13 @@
+<div class="templates-blocks">
+    <div class="block-title">
+        <span>Перенесите нужный блок</span>
+    </div>
+    <div *ngFor="let type of types">
+        <app-blocks draggable="true" (dragstart)="dragndropService.onDragStart(type)" [type]="type"></app-blocks>
+    </div>
+    <div class="addBlock" (click)="addBlock()">
+        <span>+</span>
+    </div>
+</div>
+
+<app-create-block *ngIf="isShowCreateBlock"></app-create-block>
