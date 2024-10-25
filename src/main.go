@@ -3,14 +3,30 @@ package main
 import (
 	"log"
 	"net/http"
+	"project/config"
+	"project/internal/logger"
 	"project/internal/routers"
 )
 
 func main() {
-	// Инициализация маршрутов
-	routers.SetupRoutes()
+	conf, err := config.NewConfig()
+	if err != nil {
+		log.Fatalf("config error: %v\n", err)
+	}
 
-	log.Println("Сервер запущен на порту 8080")
+	slogger := logger.NewSLogger()
+	fileLogger, err := logger.NewFLogger(conf.AppLogfile)
+	if err != nil {
+		slogger.Error("Ошибка создания FileLogger", "error", err)
+	}
+	defer fileLogger.Close()
+
+	logger := logger.NewCombinedLogger(slogger, fileLogger)
+
+	// Инициализация маршрутов
+	routers.Init(logger)
+
+	logger.Info("program started no port 8080")
 	// Запуск сервера на порту 8080
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
