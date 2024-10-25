@@ -3,10 +3,10 @@ package handlers
 import (
 	"encoding/csv"
 	"encoding/json"
-	"fmt"
 	"io"
 	"net/http"
 	"os"
+	"project/internal/logger"
 )
 
 type ColumnInfo struct {
@@ -61,48 +61,48 @@ func readCSV(filePath string) (CSVData, error) {
 	return CSVData{Columns: columns, Rows: records[1:]}, nil
 }
 
-func UploadHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("начали получать")
+func UploadHandler(w http.ResponseWriter, r *http.Request, logger *logger.CombinedLogger) {
+	logger.Info("start reading csv")
 
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
 	if r.Method != http.MethodPost {
-		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
-		fmt.Println("1")
+		http.Error(w, "invalid request method", http.StatusMethodNotAllowed)
+		logger.Error("invalid request method", "err", http.StatusMethodNotAllowed)
 		return
 	}
 
 	file, _, err := r.FormFile("csvFile")
 	if err != nil {
-		http.Error(w, "Error retrieving the file", http.StatusBadRequest)
-		fmt.Println("2")
+		http.Error(w, "error retrieving the file", http.StatusBadRequest)
+		logger.Error("error retrieving the file", "err", http.StatusBadRequest)
 		return
 	}
 	defer file.Close()
 
 	tempFile, err := os.CreateTemp("", "*.csv")
 	if err != nil {
-		http.Error(w, "Error creating temporary file", http.StatusInternalServerError)
-		fmt.Println("3")
+		http.Error(w, "error creating temporary file", http.StatusInternalServerError)
+		logger.Error("error creating temporary file", "err", http.StatusInternalServerError)
 		return
 	}
 	defer os.Remove(tempFile.Name())
 
 	if _, err := io.Copy(tempFile, file); err != nil {
-		http.Error(w, "Error saving file", http.StatusInternalServerError)
-		fmt.Println("4")
+		http.Error(w, "error saving file", http.StatusInternalServerError)
+		logger.Error("error saving file", "err", http.StatusInternalServerError)
 		return
 	}
 
 	data, err := readCSV(tempFile.Name())
 	if err != nil {
-		http.Error(w, "Error reading CSV file", http.StatusInternalServerError)
-		fmt.Println("5", err)
+		http.Error(w, "error reading scv file", http.StatusInternalServerError)
+		logger.Error("error reading scv file", http.StatusInternalServerError)
 		return
 	}
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(data)
 
-	fmt.Println("получили :)")
+	logger.Info("done reading csv")
 }

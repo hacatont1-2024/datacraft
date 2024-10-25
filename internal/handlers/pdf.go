@@ -5,7 +5,7 @@ import (
 	"io"
 	"log"
 	"net/http"
-	"os"
+	"project/internal/logger"
 
 	"github.com/jung-kurt/gofpdf"
 )
@@ -22,46 +22,40 @@ type RequestBody struct {
 	Elements []Element `json:"elements"`
 }
 
-func CreatePDF(w http.ResponseWriter, r *http.Request) {
-	// Установите заголовки CORS
+func CreatePDF(w http.ResponseWriter, r *http.Request, logger *logger.CombinedLogger) {
+	logger.Info("start create report")
+
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Access-Control-Allow-Methods", "POST")
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
 	if r.Method == http.MethodOptions {
-		return // Обработка preflight-запроса
+		return
 	}
 
 	log.Println("enter")
 	var requestBody RequestBody
-	body, err := io.ReadAll(r.Body) // Читаем тел�� запроса
+	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
-		log.Println("Ошибка чтения тела запроса:", err)
+		logger.Error("error reading body request", "err", err, "http status", http.StatusBadRequest)
 		return
 	}
-	log.Println("Тело запроса:", string(body)) // Выводим тело запроса
+	logger.Info("request body", "body", string(body))
 
 	if err := json.Unmarshal(body, &requestBody); err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
-		log.Println("Ошибка декодирования JSON:", err)
+		logger.Error("error unmarshal json", "err", err, "http status", http.StatusBadRequest)
 		return
 	}
 
 	pdf := gofpdf.New("P", "mm", "A4", "")
 	pdf.AddPage()
 
-	// Добавляем шрифт, который поддерживает кириллицу
+	pdf.AddUTF8Font("DejaVu", "", "../fonts/DejaVuSans.ttf")
+	pdf.SetFont("DejaVu", "", 12)
 
-	currentDir, err := os.Getwd()
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	log.Println(currentDir)
-
-	pdf.AddUTF8Font("DejaVu", "", "../fonts/DejaVuSans.ttf") // Укажите путь к вашему шрифту
-	pdf.SetFont("DejaVu", "", 12)                            // Устанавливаем шрифт DejaVu, размер 12
+	logger.Info("font", "selected", "DejaVu")
 
 	for _, element := range requestBody.Elements {
 		pdf.SetXY(float64(element.Coordinates.X), float64(element.Coordinates.Y))
@@ -71,7 +65,8 @@ func CreatePDF(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/pdf")
 	w.Header().Set("Content-Disposition", "attachment; filename=document.pdf")
 	if err := pdf.Output(w); err != nil {
-		log.Println(err)
+		logger.Error("error creating pdf", "error", err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+
 	}
 }
