@@ -5,8 +5,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"os"
+
+	"github.com/jung-kurt/gofpdf"
 )
 
 type ColumnInfo struct {
@@ -18,6 +21,18 @@ type ColumnInfo struct {
 type CSVData struct {
 	Columns []ColumnInfo `json:"columns"`
 	Rows    [][]string   `json:"rows"`
+}
+
+type Element struct {
+	Text        string `json:"text"`
+	Coordinates struct {
+		X int `json:"x"`
+		Y int `json:"y"`
+	} `json:"coordinates"`
+}
+
+type RequestBody struct {
+	Elements []Element `json:"elements"`
 }
 
 func readCSV(filePath string) (CSVData, error) {
@@ -116,9 +131,58 @@ func uploadHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("получили :)")
 }
 
+func createPDF(w http.ResponseWriter, r *http.Request) {
+	// Установите заголовки CORS
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
+	if r.Method == http.MethodOptions {
+		return // Обработка preflight-запроса
+	}
+
+	log.Println("enter")
+	var requestBody RequestBody
+	body, err := io.ReadAll(r.Body) // Читаем тело запроса
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		log.Println("Ошибка чтения тела запроса:", err)
+		return
+	}
+	log.Println("Тело запроса:", string(body)) // Выводим тело запроса
+
+	if err := json.Unmarshal(body, &requestBody); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		log.Println("Ошибка декодирования JSON:", err)
+		return
+	}
+
+	pdf := gofpdf.New("P", "mm", "A4", "")
+	pdf.AddPage()
+
+	// Добавляем шрифт, который поддерживает кириллицу
+	pdf.AddUTF8Font("DejaVu", "", "fonts/DejaVuSans.ttf") // Укажите путь к вашему шрифту
+	pdf.SetFont("DejaVu", "", 12)                         // Устанавливаем шрифт DejaVu, размер 12
+
+	for _, element := range requestBody.Elements {
+		pdf.SetXY(float64(element.Coordinates.X), float64(element.Coordinates.Y))
+		pdf.Cell(40, 10, element.Text)
+	}
+
+	w.Header().Set("Content-Type", "application/pdf")
+	w.Header().Set("Content-Disposition", "attachment; filename=document.pdf")
+	if err := pdf.Output(w); err != nil {
+		log.Println(err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
 func main() {
 	// Обработчик для загрузки файла
 	http.HandleFunc("/api/upload", uploadHandler)
+
+	// Обработчик для генерации PDF
+	http.HandleFunc("/api/create-pdf", createPDF)
 
 	// Обработчик для статических файлов (HTML)
 	http.Handle("/", http.FileServer(http.Dir("./")))
@@ -126,5 +190,5 @@ func main() {
 	fmt.Println("запустили")
 
 	// Запуск сервера на порту 8080
-	http.ListenAndServe(":8080", nil)
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
