@@ -10,14 +10,12 @@ import (
 )
 
 type ColumnInfo struct {
-	Name        string `json:"name"`
-	Type        string `json:"type"`
-	UniqueCount int    `json:"unique_count"`
+	Name string `json:"name"`
+	Type string `json:"type"`
 }
 
 type CSVData struct {
 	Columns []ColumnInfo `json:"columns"`
-	Rows    [][]string   `json:"rows"`
 }
 
 func readCSV(filePath string) (CSVData, error) {
@@ -54,11 +52,7 @@ func readCSV(filePath string) (CSVData, error) {
 		}
 	}
 
-	for i, header := range records[0] {
-		columns[i].UniqueCount = len(uniqueCounts[header])
-	}
-
-	return CSVData{Columns: columns, Rows: records[1:]}, nil
+	return CSVData{Columns: columns}, nil
 }
 
 func UploadHandler(w http.ResponseWriter, r *http.Request, logger *logger.CombinedLogger) {
