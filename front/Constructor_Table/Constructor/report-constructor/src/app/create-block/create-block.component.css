@@ -1,0 +1,25 @@
+.createBlockWindow {
+  position: absolute;
+  z-index: 999;
+  width: 70vh;
+  height: 50vh;
+  border: 1px solid darkgrey;
+  background: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.textBlock {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+.createBlockInfo {
+    justify-content: center;
+}

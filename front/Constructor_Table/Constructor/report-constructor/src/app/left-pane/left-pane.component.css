@@ -1,0 +1,14 @@
+.templates-blocks {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  box-shadow: black;
+}
+
+.block-title {
+    display: flex;
+    padding: 1vh;
+}

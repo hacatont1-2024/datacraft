@@ -1,0 +1,32 @@
+<div class="header">
+    <div class="btnBlock">
+      <div style="width: 33%"
+           [style.background]="mode === 1 ? '#DBDBDB' : 'white'">
+        <button [class]="mode === 1 ? 'statisticBtn' : 'statisticBtnSelect'"
+                (click)="setMode(1)">
+          <div class="hoverElem">Конструктор</div>
+        </button>
+      </div>
+      <div style="width: 33%"
+           [style.background]="mode === 2 ? '#DBDBDB' : 'white'">
+        <button [class]="mode === 2 ? 'statisticBtn' : 'statisticBtnSelect'"
+                (click)="setMode(2)">
+          <div class="hoverElem">Шаблоны</div>
+        </button>
+<!--        <button class="constructorBtn" (click)="setMode(1)">Конструктор</button>-->
+<!--        <button class="templatesBtn" (click)="setMode(2)">Шаблоны</button>-->
+      </div>
+      <div style="width: 33%"
+           [style.background]="mode === 3 ? '#DBDBDB' : 'white'">
+        <button [class]="mode === 3 ? 'statisticBtn' : 'statisticBtnSelect'"
+                (click)="setMode(3)">
+          <div class="hoverElem">Сырые данные</div>
+        </button>
+      </div>
+    </div>
+</div>
+
+<app-contstructor *ngIf="mode === 1 || mode === 0"></app-contstructor>
+<app-templates *ngIf="mode === 2"></app-templates>
+<app-table *ngIf="mode === 3"></app-table>
+<app-load-file *ngIf="mode === 0" (closeEmit)="setMode(1)"></app-load-file>

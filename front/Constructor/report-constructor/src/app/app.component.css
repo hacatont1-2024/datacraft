@@ -1,0 +1,71 @@
+.header {
+  position: relative;
+  padding-top: 10px;
+  background: #DBDBDB;
+  height: 5vh;
+  z-index: 5;
+}
+
+.tools {
+    width: 100%;
+    height: 3vh;
+    margin-left: 25%;
+}
+
+.constructorBtn {
+    margin-right: 5vh;
+}
+
+.btnBlock{
+  position: relative;
+  display: flex;
+  height: 6vh;
+  background-color: #DBDBDB;
+  z-index: 5;
+}
+
+.statisticBtn{
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: #fff;
+  color: #3C4043;
+  text-align: center;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border-radius: 15px 15px 0px 0px;
+}
+
+.statisticBtnSelect{
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: #DBDBDB;
+  color: #3C4043;
+  text-align: center;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border-radius: 0px 0px 15px 15px;
+}
+
+.hoverElem{
+  position: relative;
+  display: flex;
+  bottom: 5px;
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  border-radius: 12px;
+  margin: 5px;
+  transition: 0.3s;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.hoverElem:hover{
+  background: white;
+}
