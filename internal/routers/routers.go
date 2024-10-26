@@ -15,6 +15,10 @@ func Init(logger *logger.CombinedLogger) {
 		handlers.CreatePDF(w, r, logger)
 	})
 
+	http.HandleFunc("/api/chart", func(w http.ResponseWriter, r *http.Request) {
+		handlers.ChartHandler(w, r, logger)
+	})
+
 	http.Handle("/", http.FileServer(http.Dir("./")))
 
 	logger.Info("routers started")
