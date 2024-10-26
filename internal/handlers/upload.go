@@ -6,6 +6,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"project/internal/logger"
 )
 
 type ColumnInfo struct {
@@ -19,9 +20,10 @@ type CSVData struct {
 	Rows    [][]string   `json:"rows"`
 }
 
-func readCSV(filePath string) (CSVData, error) {
+func readCSV(filePath string, logger *logger.CombinedLogger) (CSVData, error) {
 	file, err := os.Open(filePath)
 	if err != nil {
+		logger.Error("error in readCSV", "type", "open file", "err", err)
 		return CSVData{}, err
 	}
 	defer file.Close()
@@ -31,10 +33,13 @@ func readCSV(filePath string) (CSVData, error) {
 
 	records, err := reader.ReadAll()
 	if err != nil {
+		logger.Error("error in readCSV", "type", "read file", "err", err)
 		return CSVData{}, err
 	}
 
 	if len(records) == 0 {
+
+		logger.Error("error in readCSV", "type", "no records", "err", err)
 		return CSVData{}, nil
 	}
 
@@ -60,7 +65,10 @@ func readCSV(filePath string) (CSVData, error) {
 	return CSVData{Columns: columns, Rows: records[1:]}, nil
 }
 
-func UploadHandler(w http.ResponseWriter, r *http.Request) {
+func UploadHandler(w http.ResponseWriter, r *http.Request, logger *logger.CombinedLogger) {
+
+	logger.Info("starting UploadHandler")
+
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Access-Control-Allow-Methods", "POST")
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
@@ -69,12 +77,15 @@ func UploadHandler(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method != http.MethodPost {
 		http.Error(w, "invalid request method", http.StatusMethodNotAllowed)
+		logger.Error("invalid request method", "err", http.StatusMethodNotAllowed)
 		return
 	}
 
 	file, _, err := r.FormFile("csvFile")
 	if err != nil {
 		http.Error(w, "error retrieving the file", http.StatusBadRequest)
+		logger.Error("error retrieving the file", "err", http.StatusBadRequest)
+
 		return
 	}
 	defer file.Close()
@@ -82,22 +93,30 @@ func UploadHandler(w http.ResponseWriter, r *http.Request) {
 	tempFile, err := os.CreateTemp("", "*.csv")
 	if err != nil {
 		http.Error(w, "error creating temporary file", http.StatusInternalServerError)
+		logger.Error("error creating temporary file", "err", http.StatusInternalServerError)
+
 		return
 	}
 	defer os.Remove(tempFile.Name())
 
 	if _, err := io.Copy(tempFile, file); err != nil {
 		http.Error(w, "error saving file", http.StatusInternalServerError)
+		logger.Error("error saving file", "err", http.StatusInternalServerError)
+
 		return
 	}
 
-	data, err := readCSV(tempFile.Name())
+	data, err := readCSV(tempFile.Name(), logger)
 	if err != nil {
 		http.Error(w, "error reading scv file", http.StatusInternalServerError)
+		logger.Error("error reading scv file", "err", http.StatusInternalServerError)
+
 		return
 	}
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(data)
+
+	logger.Info("complete UploadHandler")
 
 }

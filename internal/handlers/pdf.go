@@ -5,6 +5,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"project/internal/logger"
 
 	"github.com/jung-kurt/gofpdf"
 )
@@ -21,7 +22,7 @@ type RequestBody struct {
 	Elements []Element `json:"elements"`
 }
 
-func CreatePDF(w http.ResponseWriter, r *http.Request) {
+func CreatePDF(w http.ResponseWriter, r *http.Request, logger *logger.CombinedLogger) {
 
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Access-Control-Allow-Methods", "POST")
