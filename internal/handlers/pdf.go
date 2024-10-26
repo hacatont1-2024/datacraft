@@ -63,7 +63,7 @@ func CreatePDF(w http.ResponseWriter, r *http.Request, logger *logger.CombinedLo
 	}
 
 	w.Header().Set("Content-Type", "application/pdf")
-	w.Header().Set("Content-Disposition", "attachment; filename=document.pdf")
+	w.Header().Set("Content-Disposition", "attachment; filename=report.pdf")
 	if err := pdf.Output(w); err != nil {
 		logger.Error("error creating pdf", "error", err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)

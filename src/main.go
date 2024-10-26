@@ -23,10 +23,9 @@ func main() {
 
 	logger := logger.NewCombinedLogger(slogger, fileLogger)
 
-	// Инициализация маршрутов
 	routers.Init(logger)
 
 	logger.Info("program started no port 8080")
-	// Запуск сервера на порту 8080
+
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
