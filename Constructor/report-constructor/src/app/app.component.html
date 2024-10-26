@@ -26,7 +26,7 @@
     </div>
 </div>
 
-<app-contstructor *ngIf="mode === 1 || mode === 0"></app-contstructor>
+<app-contstructor *ngIf="mode === 1"></app-contstructor>
 <app-templates *ngIf="mode === 2"></app-templates>
 <app-table *ngIf="mode === 3"></app-table>
 <app-load-file *ngIf="mode === 0" (closeEmit)="setMode(1)"></app-load-file>

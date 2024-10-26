@@ -12,6 +12,8 @@ import { LoadFileComponent } from './load-file/load-file.component';
 import { BlocksComponent } from './blocks/blocks.component';
 import { CreateBlockComponent } from './create-block/create-block.component';
 import { TableComponent } from './table/table.component';
+import { DiagramsComponent } from './diagrams/diagrams.component';
+import {HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
   declarations: [
@@ -24,11 +26,13 @@ import { TableComponent } from './table/table.component';
     LoadFileComponent,
     BlocksComponent,
     CreateBlockComponent,
-    TableComponent
+    TableComponent,
+    DiagramsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HighchartsChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]

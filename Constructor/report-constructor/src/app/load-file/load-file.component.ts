@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {ControllerService} from "../../services/controller.service";
+import {DiagramsService} from "../../services/diagrams.service";
 
 @Component({
   selector: 'app-load-file',
@@ -13,7 +14,7 @@ export class LoadFileComponent implements OnInit, AfterViewInit {
   @ViewChild('inputFile') inputFile: any;
   @ViewChild('inputFileText') inputFileText: any;
 
-  constructor(private controllerService: ControllerService) { }
+  constructor(private controllerService: ControllerService, private diagramService: DiagramsService) { }
 
   ngOnInit(): void {
 
@@ -42,6 +43,7 @@ export class LoadFileComponent implements OnInit, AfterViewInit {
 
       if (response.ok) {
         const result = await response.json();
+        self.diagramService.setData(result);
         console.log(`load files: ${JSON.stringify(result)}`)
         const columns = result.columns[0].name.split(',');
         const rows = result.rows;
