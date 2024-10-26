@@ -6,7 +6,6 @@ import (
 	"io"
 	"net/http"
 	"os"
-	"project/internal/logger"
 )
 
 type ColumnInfo struct {
@@ -61,25 +60,21 @@ func readCSV(filePath string) (CSVData, error) {
 	return CSVData{Columns: columns, Rows: records[1:]}, nil
 }
 
-func UploadHandler(w http.ResponseWriter, r *http.Request, logger *logger.CombinedLogger) {
+func UploadHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Access-Control-Allow-Methods", "POST")
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
-
-	logger.Info("start reading csv")
 
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
 	if r.Method != http.MethodPost {
 		http.Error(w, "invalid request method", http.StatusMethodNotAllowed)
-		logger.Error("invalid request method", "err", http.StatusMethodNotAllowed)
 		return
 	}
 
 	file, _, err := r.FormFile("csvFile")
 	if err != nil {
 		http.Error(w, "error retrieving the file", http.StatusBadRequest)
-		logger.Error("error retrieving the file", "err", http.StatusBadRequest)
 		return
 	}
 	defer file.Close()
@@ -87,26 +82,22 @@ func UploadHandler(w http.ResponseWriter, r *http.Request, logger *logger.Combin
 	tempFile, err := os.CreateTemp("", "*.csv")
 	if err != nil {
 		http.Error(w, "error creating temporary file", http.StatusInternalServerError)
-		logger.Error("error creating temporary file", "err", http.StatusInternalServerError)
 		return
 	}
 	defer os.Remove(tempFile.Name())
 
 	if _, err := io.Copy(tempFile, file); err != nil {
 		http.Error(w, "error saving file", http.StatusInternalServerError)
-		logger.Error("error saving file", "err", http.StatusInternalServerError)
 		return
 	}
 
 	data, err := readCSV(tempFile.Name())
 	if err != nil {
 		http.Error(w, "error reading scv file", http.StatusInternalServerError)
-		logger.Error("error reading scv file", http.StatusInternalServerError)
 		return
 	}
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(data)
 
-	logger.Info("done reading csv")
 }

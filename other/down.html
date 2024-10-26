@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highcharts Copy Example</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <style>
+        #container {
+            width: 80%;
+            height: 400px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container"></div>
+<button id="copyChart">Скопировать график</button>
+
+<script>
+    const chart = Highcharts.chart('container', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Пример графика'
+        },
+        xAxis: {
+            categories: ['Категория 1', 'Категория 2', 'Категория 3']
+        },
+        yAxis: {
+            title: {
+                text: 'Значения'
+            }
+        },
+        series: [{
+            name: 'Данные',
+            data: [10, 20, 30]
+        }]
+    });
+
+    function copyChartToClipboard(chart) {
+        // Экспортируем график в изображение
+        chart.exportChart({
+            type: 'image/png',
+            filename: 'chart'
+        });
+        
+        // Используем метод exportChart для получения URL изображения
+        const imgData = chart.exportChart({
+            type: 'image/png',
+            filename: 'chart'
+        });
+
+        // Создаем временный элемент для копирования
+        const img = new Image();
+        img.src = imgData;
+
+        img.onload = function() {
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+
+            // Копируем изображение в буфер обмена
+            canvas.toBlob(function(blob) {
+                const item = new ClipboardItem({ 'image/png': blob });
+                navigator.clipboard.write([item]).then(function() {
+                    console.log('График скопирован в буфер обмена!');
+                    alert('График скопирован в буфер обмена!');
+                }, function(error) {
+                    console.error('Ошибка при копировании в буфер обмена:', error);
+                    alert('Ошибка при копировании в буфер обмена.');
+                });
+            });
+        };
+    }
+
+    document.getElementById('copyChart').addEventListener('click', function() {
+        copyChartToClipboard(chart);
+    });
+</script>
+
+</body>
+</html>

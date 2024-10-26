@@ -3,7 +3,6 @@ package handlers
 import (
 	"encoding/json"
 	"net/http"
-	"project/internal/logger"
 )
 
 type ChartData struct {
@@ -16,7 +15,7 @@ type DataPoint struct {
 	Value float64 `json:"value"`
 }
 
-func ChartHandler(w http.ResponseWriter, r *http.Request, logger *logger.CombinedLogger) {
+func ChartHandler(w http.ResponseWriter, r *http.Request) {
 	// Добавляем заголовки CORS
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
@@ -28,20 +27,16 @@ func ChartHandler(w http.ResponseWriter, r *http.Request, logger *logger.Combine
 		return
 	}
 
-	logger.Info("start processing chart data")
-
 	w.Header().Set("Content-Type", "application/json")
 
 	if r.Method != http.MethodPost {
 		http.Error(w, "invalid request method", http.StatusMethodNotAllowed)
-		logger.Error("invalid request method", "err", http.StatusMethodNotAllowed, "method", r.Method)
 		return
 	}
 
 	var inputData map[string]interface{}
 	if err := json.NewDecoder(r.Body).Decode(&inputData); err != nil {
 		http.Error(w, "error decoding JSON", http.StatusBadRequest)
-		logger.Error("error decoding JSON", "err", err)
 		return
 	}
 
@@ -64,9 +59,7 @@ func ChartHandler(w http.ResponseWriter, r *http.Request, logger *logger.Combine
 
 	if err := json.NewEncoder(w).Encode(chartData); err != nil {
 		http.Error(w, "error encoding JSON", http.StatusInternalServerError)
-		logger.Error("error encoding JSON", "err", err)
 		return
 	}
 
-	logger.Info("done processing chart data")
 }

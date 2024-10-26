@@ -5,7 +5,6 @@ import (
 	"io"
 	"log"
 	"net/http"
-	"project/internal/logger"
 
 	"github.com/jung-kurt/gofpdf"
 )
@@ -22,8 +21,7 @@ type RequestBody struct {
 	Elements []Element `json:"elements"`
 }
 
-func CreatePDF(w http.ResponseWriter, r *http.Request, logger *logger.CombinedLogger) {
-	logger.Info("start create report")
+func CreatePDF(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Access-Control-Allow-Methods", "POST")
@@ -38,14 +36,11 @@ func CreatePDF(w http.ResponseWriter, r *http.Request, logger *logger.CombinedLo
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
-		logger.Error("error reading body request", "err", err, "http status", http.StatusBadRequest)
 		return
 	}
-	logger.Info("request body", "body", string(body))
 
 	if err := json.Unmarshal(body, &requestBody); err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
-		logger.Error("error unmarshal json", "err", err, "http status", http.StatusBadRequest)
 		return
 	}
 
@@ -55,8 +50,6 @@ func CreatePDF(w http.ResponseWriter, r *http.Request, logger *logger.CombinedLo
 	pdf.AddUTF8Font("DejaVu", "", "../fonts/DejaVuSans.ttf")
 	pdf.SetFont("DejaVu", "", 12)
 
-	logger.Info("font", "selected", "DejaVu")
-
 	for _, element := range requestBody.Elements {
 		pdf.SetXY(float64(element.Coordinates.X), float64(element.Coordinates.Y))
 		pdf.Cell(40, 10, element.Text)
@@ -65,7 +58,6 @@ func CreatePDF(w http.ResponseWriter, r *http.Request, logger *logger.CombinedLo
 	w.Header().Set("Content-Type", "application/pdf")
 	w.Header().Set("Content-Disposition", "attachment; filename=report.pdf")
 	if err := pdf.Output(w); err != nil {
-		logger.Error("error creating pdf", "error", err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 
 	}

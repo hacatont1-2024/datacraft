@@ -3,23 +3,21 @@ package routers
 import (
 	"net/http"
 	"project/internal/handlers"
-	"project/internal/logger"
 )
 
-func Init(logger *logger.CombinedLogger) {
+func Init() {
 	http.HandleFunc("/api/upload", func(w http.ResponseWriter, r *http.Request) {
-		handlers.UploadHandler(w, r, logger)
+		handlers.UploadHandler(w, r)
 	})
 
 	http.HandleFunc("/api/create-pdf", func(w http.ResponseWriter, r *http.Request) {
-		handlers.CreatePDF(w, r, logger)
+		handlers.CreatePDF(w, r)
 	})
 
 	http.HandleFunc("/api/chart", func(w http.ResponseWriter, r *http.Request) {
-		handlers.ChartHandler(w, r, logger)
+		handlers.ChartHandler(w, r)
 	})
 
 	http.Handle("/", http.FileServer(http.Dir("./")))
 
-	logger.Info("routers started")
 }
