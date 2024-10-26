@@ -25,7 +25,7 @@ func main() {
 
 	routers.Init(logger)
 
-	logger.Info("program started no port 8080")
+	logger.Info("program started no port 8081")
 
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":8081", nil))
 }
