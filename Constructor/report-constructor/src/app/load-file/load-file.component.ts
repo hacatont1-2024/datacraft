@@ -32,9 +32,10 @@ export class LoadFileComponent implements OnInit, AfterViewInit {
       const formData = new FormData();
       const fileInput: any = document.getElementById('csvFile');
       formData.append('csvFile', fileInput.files[0]);
+      self.controllerService.setFileName(fileInput.files[0].name.split('.')[0]);
 
       // Отправляем запрос на сервер
-      const response = await fetch('http://localhost:8080/api/upload', {
+      const response = await fetch('http://localhost:8081/api/upload', {
         method: 'POST',
         body: formData
       });
@@ -42,14 +43,30 @@ export class LoadFileComponent implements OnInit, AfterViewInit {
       if (response.ok) {
         const result = await response.json();
         console.log(`load files: ${JSON.stringify(result)}`)
-        const arrays = result.columns[0].name.split(',');
-        self.controllerService.setHeaders(arrays);
+        const columns = result.columns[0].name.split(',');
+        const rows = result.rows;
+        self.controllerService.setHeaders(columns);
+        self.controllerService.setRows(rows);
+        // await self.createTable(fileInput.files[0].name, rows);
         self.closeEmit.emit(true);
       } else {
         console.log('error');
       }
     };
   }
+
+  // private async createTable(fileName: string, rows: any){
+  //   const response = await fetch(`http://localhost:8080/api/dynamic/createTable?${fileName.split('.')[0]}`, {
+  //     method: 'POST',
+  //     body: JSON.stringify(rows)
+  //   });
+  //
+  //   if (response.ok) {
+  //     console.log(response);
+  //   } else {
+  //     console.log('error');
+  //   }
+  // }
 
   // public showLoadWindow() {
   //   if (this.loadFile) {

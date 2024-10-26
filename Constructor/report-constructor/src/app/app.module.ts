@@ -11,6 +11,7 @@ import { RightPaneComponent } from './right-pane/right-pane.component';
 import { LoadFileComponent } from './load-file/load-file.component';
 import { BlocksComponent } from './blocks/blocks.component';
 import { CreateBlockComponent } from './create-block/create-block.component';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CreateBlockComponent } from './create-block/create-block.component';
     RightPaneComponent,
     LoadFileComponent,
     BlocksComponent,
-    CreateBlockComponent
+    CreateBlockComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
