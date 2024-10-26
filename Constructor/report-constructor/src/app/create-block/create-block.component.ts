@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-create-block',
@@ -12,4 +12,9 @@ export class CreateBlockComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  @Output() closeEmit = new EventEmitter<boolean>();
+
+  public close(){
+    this.closeEmit.emit(true);
+  }
 }

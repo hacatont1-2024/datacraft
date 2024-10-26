@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'report-constructor';
-  public mode: number = 1;
+  public mode: number = 0;
 
   public setMode(mode: any) {
     this.mode = mode;
