@@ -1,21 +1,5 @@
 <div class="block">
-  <div>
-    <div class="block-title">{{type}}</div>
-    <!--        <input type="text" name="" id="">-->
+  <div (contextmenu)="openEdit()">
+    <div class="block-title" (contextmenu)="openEdit()">{{type}}</div>
   </div>
-<!--    <div class="block" *ngIf="type === 'string'">-->
-<!--        <div class="block-title">ФИО</div>-->
-<!--&lt;!&ndash;        <input type="text" name="" id="">&ndash;&gt;-->
-<!--    </div>-->
-<!--    <div class="block" *ngIf="type === 'number'">-->
-<!--        <div class="block-title">Номер телефона</div>-->
-<!--&lt;!&ndash;        <input type="number" name="" id="">&ndash;&gt;-->
-<!--    </div>-->
-<!--    <div class="block" *ngIf="type === 'boolean'" class="boolean-block">-->
-<!--        <div class="block-title">Логический выбор</div>-->
-<!--&lt;!&ndash;        <select>&ndash;&gt;-->
-<!--&lt;!&ndash;            <option value="yes">Да</option>&ndash;&gt;-->
-<!--&lt;!&ndash;            <option value="no">Нет</option>&ndash;&gt;-->
-<!--&lt;!&ndash;          </select>&ndash;&gt;-->
-<!--    </div>-->
 </div>

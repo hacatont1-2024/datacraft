@@ -5,16 +5,20 @@
         <span>Создание нового блока</span>
     </div>
     <div class="createBlockInfo">
-        <div class="textBlock">
-            <input type="text" name="" id="" placeholder="Название">
-        </div>
-        <div class="textBlock">
-            <input type="text" name="" id="" placeholder="Текст">
-        </div>
-        <div class="textBlock">
-            <input type="text" name="" id="" placeholder="Размер рекста">
-        </div>
+      <div class="textBlock">
+        <input #name type="text" name="" placeholder="Название" [value]="nameI">
+      </div>
+      <div class="textBlock">
+        <input #text type="text" name="" placeholder="Текст" [value]="textI" (contextmenu)="openHeader($event)">
+      </div>
+      <div class="textBlock">
+        <input #size type="number" name="" placeholder="Размер текста" [value]="sizeI">
+      </div>
     </div>
-  <button class="addBlock">Создать</button>
+  <button class="addBlock" (click)="createBlock()">Создать</button>
   <button class="addBlock" (click)="close()">Отменить</button>
+</div>
+
+<div #menu class="menu check" style="top: 0; left: 0; display: none">
+  <option *ngFor="let head of headers" class="opt check" (click)="addHeader(head)">{{head}}</option>
 </div>

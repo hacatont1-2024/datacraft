@@ -75,3 +75,27 @@
   align-items: center;
   justify-content: center;
 }
+
+i {
+  position: absolute;
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  right: 7px;
+  top: calc(50% - 5px);
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+  width: 10px;
+  height: 10px;
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  width: 10px;
+  height: 10px;
+}

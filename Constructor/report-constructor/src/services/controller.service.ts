@@ -32,8 +32,8 @@ export class ControllerService {
       }
     }
   }
-  public insertRow(row: string){
-
+  public insertRow(row: any){
+    this.rows.push(row);
   }
 
   public setFileName(name: string){

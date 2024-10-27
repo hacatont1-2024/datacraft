@@ -19,8 +19,8 @@
     <div class="scroll-table-body">
       <table class="table">
         <tbody id="tableBPLA">
-          <tr *ngFor="let str of rows" [id]="str[0]" (click)="selectRow($event)">
-            <td *ngFor="let val of str[0].split(',')">
+          <tr *ngFor="let str of rows" [id]="getIndex(str)" (click)="selectRow($event)">
+            <td *ngFor="let val of str">
               {{val}}
             </td>
           </tr>

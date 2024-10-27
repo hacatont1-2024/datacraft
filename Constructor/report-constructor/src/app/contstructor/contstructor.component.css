@@ -14,3 +14,11 @@
     height: 100%;
     width: 75%;
 }
+
+.saveBtn{
+  width: 200px;
+  position: fixed;
+  height: 50px;
+  right: 20px;
+  bottom: 20px;
+}

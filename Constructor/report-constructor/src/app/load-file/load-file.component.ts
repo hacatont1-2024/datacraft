@@ -44,9 +44,19 @@ export class LoadFileComponent implements OnInit, AfterViewInit {
       if (response.ok) {
         const result = await response.json();
         self.diagramService.setData(result);
-        console.log(`load files: ${JSON.stringify(result)}`)
-        const columns = result.columns[0].name.split(',');
-        const rows = result.rows;
+        console.log(`load files: ${JSON.stringify(result)}`);
+        let columns = [];
+        if (result.columns.length > 1){
+          columns = result.columns.map((el: any) => el.name);
+        } else {
+          columns = result.columns[0].name.split(',');
+        }
+        let rows = [];
+        if (result.rows[0].length > 1){
+          rows = result.rows;
+        } else {
+          rows = result.rows.map((el: any) => el[0].split(','));
+        }
         self.controllerService.setHeaders(columns);
         self.controllerService.setRows(rows);
         // await self.createTable(fileInput.files[0].name, rows);

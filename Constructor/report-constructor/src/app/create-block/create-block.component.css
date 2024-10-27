@@ -23,3 +23,15 @@
 .createBlockInfo {
     justify-content: center;
 }
+
+.menu{
+  position: absolute;
+  z-index: 9999;
+  border: 1px solid black;
+  background: white;
+}
+
+.opt:hover{
+  background: cornflowerblue;
+  cursor: pointer;
+}

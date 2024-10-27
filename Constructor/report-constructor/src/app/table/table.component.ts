@@ -17,6 +17,8 @@ export class TableComponent implements OnInit, OnDestroy {
   public maxElems = 100;
   public newRow: any = [];
   public isCreate = false;
+  public ordASC = 1;
+  public ordField = '';
 
   ngOnInit(): void {
     this.headers = this.controllerService.getHeaders();
@@ -48,10 +50,10 @@ export class TableComponent implements OnInit, OnDestroy {
         this.rows = this.controllerService.getRows();
         const arr = [];
         for (let item of this.rows){
-          const elems = item[0].split(',');
-          if (elems[this.headers.findIndex((el: any) => el === this.headerSearch)].toUpperCase().includes(e.target.value.toUpperCase())){
-            arr.push(item);
-          }
+          const elems = item;
+          if (elems[this.headers.findIndex((el: any) => el === this.headerSearch)])
+            if (elems[this.headers.findIndex((el: any) => el === this.headerSearch)].toUpperCase().includes(e.target.value.toUpperCase()))
+              arr.push(item);
         }
         this.rows = arr;
         if (this.rows.length > this.maxElems) this.rows = this.rows.splice(0, this.maxElems);
@@ -88,9 +90,11 @@ export class TableComponent implements OnInit, OnDestroy {
     //     console.log('error');
     //   }
     // }
-    const row = this.selectRows.id;
-    this.controllerService.deleteRow(row);
-    this.selectRows.remove();
+    if (event.code === 'Delete' && this.selectRows){
+      const row = this.selectRows.id;
+      this.controllerService.deleteRow(row);
+      this.selectRows.remove();
+    }
   }
 
   ngOnDestroy() {
@@ -102,16 +106,16 @@ export class TableComponent implements OnInit, OnDestroy {
   }
   public createRow(){
     this.newRow = [];
-    let mass: any = [];
     let inputs: any = document.querySelectorAll('.createInput');
-    for(let i of inputs) mass.push(i);
-    for (let head of this.headers){
-      let m: any = mass.filter((el: any) => el.id === head);
-      if (m[0]){
-        this.newRow.push(m[0].value);
-      }
+    for(let i of inputs) {
+      this.newRow.push(i.value);
     }
-    this.rows.push([this.newRow.join(',')]);
+    this.rows.push(this.newRow);
+    this.controllerService.insertRow(this.newRow);
     this.openRow();
+  }
+
+  public getIndex(str: any){
+    return this.rows.findIndex((el: any) => el === str);
   }
 }
