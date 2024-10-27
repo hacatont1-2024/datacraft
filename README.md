@@ -24,3 +24,11 @@
 
 - **Constructor/**: Пакет, реализующий front-end часть.
 
+
+## ДЛЯ ЗАПУСКА 
+
+**git clone https://github.com/hacatont1-2024/datacraft.git**
+
+**cd datacraft/src**
+
+**go build** or **go run main.go**
