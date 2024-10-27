@@ -1,0 +1,6 @@
+<div id="work-space" class="work-space"
+     (dragover)="dragndropService.onDragOver($event)"
+     (drop)="dragndropService.onDrop($event)">
+    <span></span>
+</div>
+<div id="trashElems" class="trash" (dragover)="dragndropService.onDragOver($event)" (drop)="dragndropService.onDropTrash()">trash</div>

@@ -1,13 +1,16 @@
 package handlers
 
 import (
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"io"
 	"log"
 	"net/http"
+	"os"
 	"project/config"
 	"project/internal/logger"
+	"strings"
 
 	"github.com/jung-kurt/gofpdf"
 )
@@ -52,16 +55,36 @@ func CreatePDF(w http.ResponseWriter, r *http.Request, logger *logger.CombinedLo
 	}
 
 	pdf := gofpdf.New("P", "mm", "A4", "")
+	pdf.AddUTF8Font("DejaVu", "", conf.Font)
 
 	// Проходим по каждому шаблону в запросе
 	for _, template := range requestBody.Template {
 		pdf.AddPage()
-		pdf.AddUTF8Font("DejaVu", "", conf.Font)
 
 		for _, textElement := range template.Texts {
-			pdf.SetFont("DejaVu", "", float64(textElement.Size))
-			pdf.SetXY(float64(textElement.X), float64(textElement.Y))
-			pdf.Cell(0, 10, textElement.Text) // Увеличиваем высоту ячейки для лучшего отображения
+			if strings.HasPrefix(textElement.Text, "data:image/svg+xml;base64,") {
+				// Декодируем base64 строку
+				base64Data := strings.TrimPrefix(textElement.Text, "data:image/svg+xml;base64,")
+				imgData, err := base64.StdEncoding.DecodeString(base64Data)
+				if err != nil {
+					http.Error(w, "Ошибка декодирования base64: "+err.Error(), http.StatusBadRequest)
+					return
+				}
+
+				// Сохраняем изображение во временный файл
+				imgFileName := "temp_image.svg"
+				if err := os.WriteFile(imgFileName, imgData, 0644); err != nil {
+					http.Error(w, "Ошибка сохранения изображения: "+err.Error(), http.StatusInternalServerError)
+					return
+				}
+
+				// Добавляем изображение в PDF
+				pdf.Image(imgFileName, float64(textElement.X), float64(textElement.Y), 0, 0, false, "", 0, "")
+			} else {
+				pdf.SetFont("DejaVu", "", float64(textElement.Size))
+				pdf.SetXY(float64(textElement.X), float64(textElement.Y))
+				pdf.Cell(0, float64(textElement.Size+2), textElement.Text) // Увеличиваем высоту ячейки для лучшего отображения
+			}
 		}
 	}
 

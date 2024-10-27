@@ -1,0 +1,50 @@
+<div class="diagrams">
+  <button (click)="createSnapshot(1)">Скачать эту диаграмму</button>
+  <div  class="first" class="diagram1">
+    <highcharts-chart #pieChart
+                      [Highcharts]="Highcharts"
+                      [options]="pieChartOptions"
+                      (chartInstance)="saveInstance($event, 'pieChart')"
+                      style="width: 100%; height: 400px; display: block;">
+    </highcharts-chart>
+  </div>
+  <div>
+    <label for="dataSelect">Выберите параметр:</label>
+    <select id="dataSelect" (change)="onSelectChange($event, 1)">
+      <option *ngFor="let option of categories" [value]="option">{{ option }}</option>
+    </select>
+  </div>
+
+  <div class="diagram2">
+    <button (click)="createSnapshot(2)">Скачать эту диаграмму</button>
+    <highcharts-chart #columnChart
+                      [Highcharts]="Highcharts"
+                      [options]="columnChartOptions"
+                      (chartInstance)="saveInstance($event, 'columnChart')"
+                      style="width: 100%; height: 400px; display: block;">
+    </highcharts-chart>
+  </div>
+  <div>
+    <label for="dataSelect">Выберите параметр:</label>
+    <select id="dataSelect" (change)="onSelectChange($event, 2)">
+      <option *ngFor="let option of categories" [value]="option">{{ option }}</option>
+    </select>
+  </div>
+
+  <div class="diagram3">
+    <button (click)="createSnapshot(3)">Скачать эту диаграмму</button>
+    <highcharts-chart
+      #histogramChart
+      [Highcharts]="Highcharts"
+      [options]="histogramOptions"
+      (chartInstance)="saveInstance($event, 'histogramChart')"
+      style="width: 100%; height: 400px; display: block;">
+    </highcharts-chart>
+  </div>
+</div>
+<div>
+  <label for="dataSelect">Выберите параметр:</label>
+  <select id="dataSelect" (change)="onSelectChange($event, 3)">
+    <option *ngFor="let option of categories" [value]="option">{{ option }}</option>
+  </select>
+</div>
