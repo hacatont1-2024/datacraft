@@ -9,6 +9,7 @@ import (
 
 type Config struct {
 	AppLogfile string `yaml:"app_logfile"`
+	Font       string `yaml:"font"`
 }
 
 func NewConfig() (*Config, error) {

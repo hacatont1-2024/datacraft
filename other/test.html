@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отправка JSON</title>
+    <script>
+        function sendJson() {
+            const data = { 
+                
+            };
+
+            fetch('http://localhost:8081/api/create-pdf', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: {"template":[{"texts":[{"text":"tesssssst","size":12,"x":56,"y":40}]},{"texts":[{"text":"tesssssst","size":12,"x":56,"y":40}]}]}
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.blob(); // Получаем PDF как Blob
+                }
+                throw new Error('Network response was not ok.');
+            })
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = 'report.pdf'; // Имя файла для скачивания
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Создание PDF</h1>
+    <button onclick="sendJson()">Создать PDF</button>
+</body>
+</html>

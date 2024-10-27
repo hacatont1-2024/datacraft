@@ -23,7 +23,7 @@ func main() {
 
 	logger := logger.NewCombinedLogger(slogger, fileLogger)
 
-	routers.Init(logger)
+	routers.Init(logger, conf)
 
 	logger.Info("server starting on 8081")
 

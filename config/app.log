@@ -1,0 +1,174 @@
+time=2024-10-27T12:03:46.987+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T12:05:08.041+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T12:05:08.101+04:00 level=ERROR msg="error in readCSV" type="read file" err="record on line 2: wrong number of fields"
+time=2024-10-27T12:05:08.101+04:00 level=ERROR msg="error reading csv file" err="record on line 2: wrong number of fields"
+time=2024-10-27T12:06:36.370+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T12:06:36.432+04:00 level=ERROR msg="error in readCSV" type="read file" err="parse error on line 2, column 266: bare \" in non-quoted-field"
+time=2024-10-27T12:06:36.432+04:00 level=ERROR msg="error reading csv file" err="parse error on line 2, column 266: bare \" in non-quoted-field"
+time=2024-10-27T12:06:47.147+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T12:06:47.221+04:00 level=ERROR msg="error in readCSV" type="read file" err="parse error on line 2, column 266: bare \" in non-quoted-field"
+time=2024-10-27T12:06:47.221+04:00 level=ERROR msg="error reading csv file" err="parse error on line 2, column 266: bare \" in non-quoted-field"
+time=2024-10-27T12:13:20.948+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T12:13:35.924+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T12:13:36.025+04:00 level=ERROR msg="error in readCSV" type="open file" err="open /tmp/4195980361.csv: no such file or directory"
+time=2024-10-27T12:13:36.025+04:00 level=ERROR msg="error reading csv file" err="open /tmp/4195980361.csv: no such file or directory"
+time=2024-10-27T12:18:59.993+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T12:19:09.260+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T12:23:00.487+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T12:23:28.258+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T12:24:15.613+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T12:24:19.000+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T12:27:33.492+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T12:27:46.049+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T12:27:46.145+04:00 level=ERROR msg="error in readCSV" type="open file" err="open /tmp/1367776324.csv: no such file or directory"
+time=2024-10-27T12:27:46.145+04:00 level=ERROR msg="error reading csv file" err="open /tmp/1367776324.csv: no such file or directory"
+time=2024-10-27T12:31:59.231+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T12:32:06.086+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T12:32:18.172+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T12:32:18.263+04:00 level=ERROR msg="error in readCSV" type="open file" err="open /tmp/755526584.csv: no such file or directory"
+time=2024-10-27T12:32:18.263+04:00 level=ERROR msg="error reading csv file" err="open /tmp/755526584.csv: no such file or directory"
+time=2024-10-27T12:36:18.917+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T12:36:29.195+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T12:36:29.288+04:00 level=ERROR msg="error in readCSV" type="open file" err="open /tmp/3594051120.csv: no such file or directory"
+time=2024-10-27T12:36:29.288+04:00 level=ERROR msg="error reading csv file" err="open /tmp/3594051120.csv: no such file or directory"
+time=2024-10-27T12:38:31.092+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T12:38:53.112+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T12:38:53.160+04:00 level=INFO msg="temporary file created" path=/tmp/2618548237.csv
+time=2024-10-27T12:38:53.203+04:00 level=ERROR msg="error in readCSV" type="open file" err="open /tmp/1788939066.csv: no such file or directory"
+time=2024-10-27T12:38:53.203+04:00 level=ERROR msg="error reading csv file" err="open /tmp/1788939066.csv: no such file or directory"
+time=2024-10-27T12:43:04.608+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T12:43:16.207+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T12:43:16.268+04:00 level=INFO msg="temporary file created" path=/tmp/532068636.csv
+time=2024-10-27T12:43:16.313+04:00 level=ERROR msg="error in readCSV" type="open file" err="open /tmp/2583271668.csv: no such file or directory"
+time=2024-10-27T12:43:16.313+04:00 level=ERROR msg="error reading csv file" err="open /tmp/2583271668.csv: no such file or directory"
+time=2024-10-27T12:47:18.072+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T12:47:23.088+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T12:47:23.130+04:00 level=INFO msg="temporary file created" path=/tmp/2932526436.csv
+time=2024-10-27T12:47:23.175+04:00 level=INFO msg="temporary file created" path=/tmp/3094516357.csv
+time=2024-10-27T12:47:23.224+04:00 level=ERROR msg="error in readCSV" type="open file" err="open /tmp/1940688447.csv: no such file or directory"
+time=2024-10-27T12:47:23.224+04:00 level=ERROR msg="error reading csv file" err="open /tmp/1940688447.csv: no such file or directory"
+time=2024-10-27T12:49:07.291+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T12:49:15.259+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T12:49:15.311+04:00 level=INFO msg="temporary file created" path=/tmp/2487218238.csv
+time=2024-10-27T12:49:15.356+04:00 level=INFO msg="converted file path" path=/tmp/4189234770.csv
+time=2024-10-27T12:49:15.356+04:00 level=INFO msg="temporary file created" path=/tmp/3721119611.csv
+time=2024-10-27T12:49:15.401+04:00 level=INFO msg="converted file path" path=/tmp/617375549.csv
+time=2024-10-27T12:49:15.401+04:00 level=INFO msg="reading from converted file" path=/tmp/4189234770.csv
+time=2024-10-27T12:49:15.401+04:00 level=ERROR msg="error in readCSV" type="open file" err="open /tmp/4189234770.csv: no such file or directory"
+time=2024-10-27T12:49:15.401+04:00 level=ERROR msg="error reading csv file" err="open /tmp/4189234770.csv: no such file or directory"
+time=2024-10-27T12:51:21.659+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T12:51:29.354+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T12:51:29.405+04:00 level=INFO msg="temporary file created" path=/tmp/330867697.csv
+time=2024-10-27T12:51:29.450+04:00 level=INFO msg="converted file path" path=/tmp/3224205441.csv
+time=2024-10-27T12:51:29.450+04:00 level=INFO msg="temporary file created" path=/tmp/3980091343.csv
+time=2024-10-27T12:51:29.502+04:00 level=INFO msg="converted file path" path=/tmp/1257492172.csv
+time=2024-10-27T12:51:29.502+04:00 level=INFO msg="reading from converted file" path=/tmp/3224205441.csv
+time=2024-10-27T12:51:29.502+04:00 level=ERROR msg="error in readCSV" type="open file" err="open /tmp/3224205441.csv: no such file or directory"
+time=2024-10-27T12:51:29.502+04:00 level=ERROR msg="error reading csv file" err="open /tmp/3224205441.csv: no such file or directory"
+time=2024-10-27T13:01:59.687+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T13:02:14.317+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T13:02:14.564+04:00 level=INFO msg="output file created" path=output_files/_11samara_tasks_обезличенная.csv
+time=2024-10-27T13:02:14.570+04:00 level=INFO msg="converted file path" path=output_files/_11samara_tasks_обезличенная.csv
+time=2024-10-27T13:02:14.570+04:00 level=INFO msg="output file created" path=output_files/_samara-tasks-history.csv
+time=2024-10-27T13:02:14.574+04:00 level=INFO msg="converted file path" path=output_files/_samara-tasks-history.csv
+time=2024-10-27T13:02:14.574+04:00 level=INFO msg="reading from converted file" path=output_files/_11samara_tasks_обезличенная.csv
+time=2024-10-27T13:02:14.574+04:00 level=ERROR msg="no records found in csv file"
+time=2024-10-27T13:05:43.702+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T13:05:48.484+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T13:05:48.526+04:00 level=INFO msg="output file created" path=output_files/_11samara_tasks_обезличенная.csv
+time=2024-10-27T13:05:48.535+04:00 level=INFO msg="converted file path" path=output_files/_11samara_tasks_обезличенная.csv
+time=2024-10-27T13:05:48.535+04:00 level=INFO msg="output file created" path=output_files/_samara-tasks-history.csv
+time=2024-10-27T13:05:48.542+04:00 level=INFO msg="converted file path" path=output_files/_samara-tasks-history.csv
+time=2024-10-27T13:05:48.542+04:00 level=INFO msg="reading from converted file" path=output_files/_11samara_tasks_обезличенная.csv
+time=2024-10-27T13:05:48.542+04:00 level=ERROR msg="no records found in csv file"
+time=2024-10-27T13:10:39.184+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T13:10:56.786+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T13:12:47.786+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T13:12:57.757+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T13:15:01.253+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T13:15:41.192+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T13:16:34.404+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T13:16:39.312+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T13:16:42.947+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T13:18:57.009+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T13:19:01.914+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T13:19:37.797+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T13:19:40.747+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T13:22:28.576+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T13:22:35.212+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T13:22:35.254+04:00 level=INFO msg="temporary file created" path=/tmp/3437204372.csv
+time=2024-10-27T13:22:35.256+04:00 level=INFO msg="temporary file created" path=/tmp/220594417.csv
+time=2024-10-27T13:22:35.256+04:00 level=INFO msg="reading from temporary file" path=/tmp/3437204372.csv
+time=2024-10-27T13:22:35.267+04:00 level=INFO msg="reading from temporary file" path=/tmp/220594417.csv
+time=2024-10-27T13:22:35.267+04:00 level=ERROR msg="error in readCSV" type="read file" err="parse error on line 2, column 266: bare \" in non-quoted-field"
+time=2024-10-27T13:22:35.267+04:00 level=ERROR msg="error reading csv file" err="parse error on line 2, column 266: bare \" in non-quoted-field"
+time=2024-10-27T13:29:08.776+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T13:29:17.949+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T13:29:17.995+04:00 level=INFO msg="temporary file created" path=/tmp/1464232447.csv
+time=2024-10-27T13:29:17.998+04:00 level=INFO msg="temporary file created" path=/tmp/1105454183.csv
+time=2024-10-27T13:29:17.998+04:00 level=INFO msg="reading from temporary file" path=/tmp/1464232447.csv
+time=2024-10-27T13:29:17.998+04:00 level=ERROR msg="error in readCSV" type="read file" err="record on line 2: wrong number of fields"
+time=2024-10-27T13:29:17.998+04:00 level=ERROR msg="error reading csv file" err="record on line 2: wrong number of fields"
+time=2024-10-27T13:31:06.623+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T13:31:10.089+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T13:31:10.136+04:00 level=INFO msg="temporary file created" path=/tmp/4214131715.csv
+time=2024-10-27T13:31:10.140+04:00 level=INFO msg="temporary file created" path=/tmp/2598097483.csv
+time=2024-10-27T13:31:10.140+04:00 level=INFO msg="reading from temporary file" path=/tmp/4214131715.csv
+time=2024-10-27T13:31:10.140+04:00 level=ERROR msg="error in readCSV" type="read file" err="record on line 2: wrong number of fields"
+time=2024-10-27T13:31:10.140+04:00 level=ERROR msg="error reading csv file" err="record on line 2: wrong number of fields"
+time=2024-10-27T13:32:35.994+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T13:32:39.948+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T13:32:39.989+04:00 level=INFO msg="temporary file created" path=/tmp/3693496264.csv
+time=2024-10-27T13:32:39.992+04:00 level=INFO msg="temporary file created" path=/tmp/2196356695.csv
+time=2024-10-27T13:32:39.992+04:00 level=INFO msg="reading from temporary file" path=/tmp/3693496264.csv
+time=2024-10-27T13:32:39.992+04:00 level=ERROR msg="error in readCSV" type="read file" filepath=/tmp/3693496264.csv err="record on line 2: wrong number of fields"
+time=2024-10-27T13:32:39.992+04:00 level=ERROR msg="error reading csv file" err="record on line 2: wrong number of fields"
+time=2024-10-27T13:40:34.059+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T13:40:34.111+04:00 level=ERROR msg="no files uploaded"
+time=2024-10-27T13:41:38.623+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T13:41:41.167+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T13:41:41.205+04:00 level=ERROR msg="no files uploaded"
+time=2024-10-27T13:44:49.853+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T13:45:06.234+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T13:45:06.282+04:00 level=INFO msg="temporary file created" path=/tmp/1055250046.csv
+time=2024-10-27T13:45:06.285+04:00 level=INFO msg="temporary file created" path=/tmp/763672892.csv
+time=2024-10-27T13:45:06.285+04:00 level=INFO msg="reading from temporary file" path=/tmp/1055250046.csv
+time=2024-10-27T13:45:06.285+04:00 level=ERROR msg="error in readCSV" type="read file" filepath=/tmp/1055250046.csv err="record on line 2: wrong number of fields"
+time=2024-10-27T13:45:06.285+04:00 level=ERROR msg="error reading csv file" err="record on line 2: wrong number of fields"
+time=2024-10-27T13:50:22.490+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T13:50:27.160+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T13:50:27.209+04:00 level=INFO msg="temporary file created" path=/tmp/1494106778.csv
+time=2024-10-27T13:50:27.212+04:00 level=INFO msg="temporary file created" path=/tmp/4062773790.csv
+time=2024-10-27T13:50:27.212+04:00 level=INFO msg="reading from temporary file" path=/tmp/1494106778.csv
+time=2024-10-27T13:50:27.212+04:00 level=ERROR msg="error in readCSV" type="read file" filepath=/tmp/1494106778.csv err="record on line 2: wrong number of fields"
+time=2024-10-27T13:50:27.212+04:00 level=ERROR msg="error reading csv file" err="record on line 2: wrong number of fields"
+time=2024-10-27T13:58:25.223+04:00 level=INFO msg="starting MergeCSVHandler"
+time=2024-10-27T13:58:25.268+04:00 level=ERROR msg="no files uploaded"
+time=2024-10-27T13:58:31.182+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T13:58:34.476+04:00 level=INFO msg="starting UploadHandler"
+time=2024-10-27T14:21:45.262+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T14:26:58.632+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T14:30:33.174+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T14:34:23.252+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T14:34:54.857+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T14:38:19.361+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T14:40:02.859+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T14:42:01.622+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T14:44:34.161+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T14:46:54.586+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T14:49:58.329+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T14:50:12.660+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T14:51:35.660+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T14:58:40.503+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T14:59:47.553+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T15:01:14.663+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T15:13:20.714+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T15:19:58.046+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T15:23:55.079+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T15:27:41.766+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T15:28:58.213+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T15:33:08.961+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T15:37:08.605+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T15:38:42.123+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T15:43:06.654+04:00 level=INFO msg="server starting on 8081"
+time=2024-10-27T15:46:58.945+04:00 level=INFO msg="server starting on 8081"
