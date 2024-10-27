@@ -12,5 +12,4 @@ export class RightPaneComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

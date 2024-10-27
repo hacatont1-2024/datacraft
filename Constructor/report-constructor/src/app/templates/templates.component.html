@@ -1,3 +1,36 @@
-<div class="work-space">
-    <span>рабочая область</span>
+<div style="display: flex">
+  <div class="work-space">
+    <div class="templateBlock" *ngFor="let temp of templates" (click)="openTemplate(temp)">{{temp.name}}</div>
+    <button class="addBlock" (click)="getReport()">Получить отчет</button>
+  </div>
+
+  <div *ngIf="isSelectTemplate" style="width: 70%; margin-top: 20px">
+    <div class="scroll-table">
+      <div style="min-width: 900px">
+        <table class="table">
+          <thead>
+          <tr>
+            <th class="column" scope="col"><input style="width: 100%; height: 10px" type="checkbox" (change)="selectAll()"></th>
+            <th *ngFor="let head of headers" class="column" scope="col" [id]="head">
+              {{head}}
+              <i style="display: none" class="arrow up"></i>
+            </th>
+          </tr>
+          </thead>
+        </table>
+        <div class="scroll-table-body">
+          <table class="table">
+            <tbody id="tableBPLA">
+            <tr *ngFor="let str of filterRows" [id]="getIndex(str)">
+              <td><input (change)="selectElem($event)" class="selectInput" style="width: 100%; height: 10px" type="checkbox"></td>
+              <td *ngFor="let val of str">
+                {{val}}
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

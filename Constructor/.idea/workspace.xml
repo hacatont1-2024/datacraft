@@ -26,7 +26,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../work/repo/eily.acuario.web/@Source/JSProjects/integra-rt/targets" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../work/repo/eily.acuario.web/AngularProjectsSrc/ComplexState" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="E:\hacaton\datacraft\Constructor\report-constructor\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -41,7 +41,7 @@
       <updated>1729893513124</updated>
       <workItem from="1729893515018" duration="22980000" />
       <workItem from="1729947344080" duration="2781000" />
-      <workItem from="1729967694711" duration="17170000" />
+      <workItem from="1729967694711" duration="35491000" />
     </task>
     <servers />
   </component>

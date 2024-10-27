@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ControllerService} from "../../services/controller.service";
 
 @Component({
   selector: 'app-contstructor',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContstructorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private controllerService: ControllerService) { }
 
   ngOnInit(): void {
   }
 
+  public saveTemplate(){
+    this.controllerService.saveNewTemplate();
+  }
 }

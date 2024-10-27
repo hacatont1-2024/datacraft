@@ -2,6 +2,7 @@
   <option *ngFor="let val of headers" [value]="val" >{{val}}</option>
 </select>
 <input id="inputSearch" style="width: calc(100% - 500px);" class="inputSearch" placeholder="Поиск" (input)="searchElems($event)">
+<input type="number" style="width: 100px; margin: 5px" (input)="setOffsetValue($event)" [value]="offsetElems">
 <input type="number" style="width: 100px; margin: 5px" (input)="setMaxValue($event)" [value]="maxElems">
 <button (click)="openRow()" class="addBlock">Добавить запись</button>
 <div class="scroll-table">

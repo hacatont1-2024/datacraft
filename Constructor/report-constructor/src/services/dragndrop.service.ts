@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import {BlocsService} from "./blocs.service";
+import {ControllerService} from "./controller.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DragndropService {
 
-  constructor(private blocService: BlocsService) { }
+  constructor(private blocService: BlocsService,
+              private controllerService: ControllerService) { }
 
   private panel: any;
   private target: any;
@@ -15,6 +17,7 @@ export class DragndropService {
     const parent: any = document.getElementById(item);
     this.panel = document.createElement('div');
     this.panel.innerText = this.blocService.countBlock(parent.innerText).text;
+    this.panel.id = Math.random();
     this.panel.style.fontSize = this.blocService.countBlock(parent.innerText).size + 'px';
     this.panel.style.background = 'white';
     this.panel.style.cursor = 'all-scroll';
@@ -38,6 +41,8 @@ export class DragndropService {
 
   public onDrop(event: any) {
     const right: any = document.getElementById('work-space');
+    const koefX = 200 / right.offsetWidth;
+    const koefY = 287 / right.offsetHeight;
     this.panel.style.position = 'absolute';
     this.panel.style.left = event.clientX - right.offsetLeft + 'px';
     this.panel.style.top = event.clientY - right.offsetTop + window.scrollY + 'px';
@@ -50,11 +55,32 @@ export class DragndropService {
     }
     if (this.target){
       this.target.append(this.panel);
+    } else {
+
     }
+
+    const elem = this.controllerService.getNewTemplate(this.panel.id);
+    if (elem){
+      elem.x = Math.floor((event.clientX - right.offsetLeft) * koefX);
+      elem.y = Math.floor((event.clientY - right.offsetTop + window.scrollY) * koefY);
+    } else {
+      const newText = {
+        id: this.panel.id,
+        text: this.panel.innerText,
+        size: Number(this.panel.style.fontSize.split('px')[0]),
+        x: Math.floor((event.clientX - right.offsetLeft) * koefX),
+        y: Math.floor((event.clientY - right.offsetTop + window.scrollY) * koefY)
+      }
+      this.controllerService.addTextNewTemplate(newText);
+    }
+
+
     this.panel = null;
   }
 
   public onDropTrash(){
+    const elem = this.controllerService.getNewTemplate(this.panel.id);
+    if (elem) this.controllerService.deleteTextInNewTemplate(this.panel.id);
     this.panel.remove();
   }
 }
