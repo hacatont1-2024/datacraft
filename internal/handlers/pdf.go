@@ -10,20 +10,22 @@ import (
 	"github.com/jung-kurt/gofpdf"
 )
 
-type Element struct {
-	Text        string `json:"text"`
-	Coordinates struct {
-		X int `json:"x"`
-		Y int `json:"y"`
-	} `json:"coordinates"`
+type Text struct {
+	Text string `json:"text"`
+	Size int    `json:"size"`
+	X    int    `json:"x"`
+	Y    int    `json:"y"`
+}
+
+type Template struct {
+	Texts []Text `json:"texts"`
 }
 
 type RequestBody struct {
-	Elements []Element `json:"elements"`
+	Template []Template `json:"template"`
 }
 
 func CreatePDF(w http.ResponseWriter, r *http.Request, logger *logger.CombinedLogger) {
-
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Access-Control-Allow-Methods", "POST")
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
@@ -46,20 +48,23 @@ func CreatePDF(w http.ResponseWriter, r *http.Request, logger *logger.CombinedLo
 	}
 
 	pdf := gofpdf.New("P", "mm", "A4", "")
-	pdf.AddPage()
 
-	pdf.AddUTF8Font("DejaVu", "", "../fonts/DejaVuSans.ttf")
-	pdf.SetFont("DejaVu", "", 12)
+	// Проходим по каждой странице в шаблоне
+	for _, template := range requestBody.Template {
+		pdf.AddPage()
+		pdf.AddUTF8Font("DejaVu", "", "../fonts/DejaVuSans.ttf")
 
-	for _, element := range requestBody.Elements {
-		pdf.SetXY(float64(element.Coordinates.X), float64(element.Coordinates.Y))
-		pdf.Cell(40, 10, element.Text)
+		// Проходим по каждому текстовому элементу на странице
+		for _, textElement := range template.Texts {
+			pdf.SetFont("DejaVu", "", float64(textElement.Size))
+			pdf.SetXY(float64(textElement.X), float64(textElement.Y))
+			pdf.Cell(0, 10, textElement.Text) // Используем 0 для ширины, чтобы текст не обрезался
+		}
 	}
 
 	w.Header().Set("Content-Type", "application/pdf")
 	w.Header().Set("Content-Disposition", "attachment; filename=report.pdf")
 	if err := pdf.Output(w); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
-
 	}
 }

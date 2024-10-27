@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pessword
+      POSTGRES_DB: datacraft_db
+    ports:
+      - "5450:5432"
+    volumes:
+      - postgres_datacraft:/var/lib/postgresql/data
+
+volumes:
+  postgres_datacraft:
