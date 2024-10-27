@@ -28,7 +28,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../work/repo/eily.acuario.web/AngularProjectsSrc/ComplexState" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="ts.external.directory.path" value="E:\hacaton\datacraft\Constructor\report-constructor\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="E:\WebStorm 2021.3.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -41,7 +41,7 @@
       <updated>1729893513124</updated>
       <workItem from="1729893515018" duration="22980000" />
       <workItem from="1729947344080" duration="2781000" />
-      <workItem from="1729967694711" duration="35491000" />
+      <workItem from="1729967694711" duration="37423000" />
     </task>
     <servers />
   </component>

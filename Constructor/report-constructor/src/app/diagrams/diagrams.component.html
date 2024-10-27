@@ -1,9 +1,11 @@
 <div class="diagrams">
-  <div class="first">
-    <highcharts-chart
-      [Highcharts]="Highcharts"
-      [options]="pieChartOptions"
-      style="width: 100%; height: 400px; display: block;">
+  <button (click)="createSnapshot(1)">Скачать эту диаграмму</button>
+  <div  class="first" class="diagram1">
+    <highcharts-chart #pieChart
+                      [Highcharts]="Highcharts"
+                      [options]="pieChartOptions"
+                      (chartInstance)="saveInstance($event, 'pieChart')"
+                      style="width: 100%; height: 400px; display: block;">
     </highcharts-chart>
   </div>
   <div>
@@ -13,11 +15,13 @@
     </select>
   </div>
 
-  <div>
-    <highcharts-chart
-      [Highcharts]="Highcharts"
-      [options]="columnChartOptions"
-      style="width: 100%; height: 400px; display: block;">
+  <div class="diagram2">
+    <button (click)="createSnapshot(2)">Скачать эту диаграмму</button>
+    <highcharts-chart #columnChart
+                      [Highcharts]="Highcharts"
+                      [options]="columnChartOptions"
+                      (chartInstance)="saveInstance($event, 'columnChart')"
+                      style="width: 100%; height: 400px; display: block;">
     </highcharts-chart>
   </div>
   <div>
@@ -27,10 +31,13 @@
     </select>
   </div>
 
-  <div>
+  <div class="diagram3">
+    <button (click)="createSnapshot(3)">Скачать эту диаграмму</button>
     <highcharts-chart
+      #histogramChart
       [Highcharts]="Highcharts"
       [options]="histogramOptions"
+      (chartInstance)="saveInstance($event, 'histogramChart')"
       style="width: 100%; height: 400px; display: block;">
     </highcharts-chart>
   </div>

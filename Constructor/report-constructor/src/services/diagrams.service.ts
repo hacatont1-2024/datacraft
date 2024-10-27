@@ -106,6 +106,9 @@ export class DiagramsService {
           console.log(count[val])
           objVal = Object.values(count[val]);
           categories = Object.keys(count[val]);
+          if (objVal.length > 25){
+            objVal = objVal.splice(0, 25);
+          }
           console.log(objVal, categories)
         }
       }
