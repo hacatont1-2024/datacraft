@@ -6,20 +6,38 @@
       style="width: 100%; height: 400px; display: block;">
     </highcharts-chart>
   </div>
+  <div>
+    <label for="dataSelect">Выберите параметр:</label>
+    <select id="dataSelect" (change)="onSelectChange($event, 1)">
+      <option *ngFor="let option of categories" [value]="option">{{ option }}</option>
+    </select>
+  </div>
 
-  <div class="second">
+  <div>
     <highcharts-chart
       [Highcharts]="Highcharts"
       [options]="columnChartOptions"
       style="width: 100%; height: 400px; display: block;">
     </highcharts-chart>
   </div>
+  <div>
+    <label for="dataSelect">Выберите параметр:</label>
+    <select id="dataSelect" (change)="onSelectChange($event, 2)">
+      <option *ngFor="let option of categories" [value]="option">{{ option }}</option>
+    </select>
+  </div>
 
-  <div class="third">
+  <div>
     <highcharts-chart
       [Highcharts]="Highcharts"
       [options]="histogramOptions"
       style="width: 100%; height: 400px; display: block;">
     </highcharts-chart>
   </div>
+</div>
+<div>
+  <label for="dataSelect">Выберите параметр:</label>
+  <select id="dataSelect" (change)="onSelectChange($event, 3)">
+    <option *ngFor="let option of categories" [value]="option">{{ option }}</option>
+  </select>
 </div>

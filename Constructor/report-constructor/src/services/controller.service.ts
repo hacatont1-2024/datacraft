@@ -11,6 +11,34 @@ export class ControllerService {
   private rows: Array<any> = [];
   private fileName = '';
 
+  private obj = {
+    template: [{
+      texts: [{
+        text: 'test 123: ${event_id}',
+        size: 12,
+        x: 100,
+        y: 20
+      },{
+        text: 'test 321: ${date}, gg wp: ${new_value}',
+        size: 12,
+        x: 100,
+        y: 20
+      }]
+    }, {
+      texts: [{
+        text: 'здесь вторая страница: ${old_value}',
+        size: 12,
+        x: 100,
+        y: 20
+      },{
+        text: 'а здесь второй текст на этой странице: ${date}, и вот вторя подставляемая запись: ${new_value}',
+        size: 12,
+        x: 100,
+        y: 20
+      }]
+    }]
+  }
+
   public setHeaders(headers: Array<string>){
     this.headers = headers;
   }
